@@ -1,0 +1,49 @@
+{
+  "version": "v1",
+  "name": "synthetic-cross-tool-customer-handover",
+  "description": "SYNTHETIC NOT GPU VALIDATION. Invented values demonstrate decision behavior only.",
+  "environment_fingerprint": "synthetic-env-v1",
+  "criteria": [
+    {
+      "id": "nccl-out_of_place",
+      "owner": "fabric-team",
+      "metric": "nccl.all_reduce.busbw.out_of_place.bytes_1048576.type_float.op_sum",
+      "unit": "GB/s",
+      "scopes": [
+        "communicator/rack-a",
+        "communicator/rack-b"
+      ],
+      "minimum": 125,
+      "min_samples": 2,
+      "max_age_seconds": 3600,
+      "require_zero_errors": true
+    },
+    {
+      "id": "nccl-in_place",
+      "owner": "fabric-team",
+      "metric": "nccl.all_reduce.busbw.in_place.bytes_1048576.type_float.op_sum",
+      "unit": "GB/s",
+      "scopes": [
+        "communicator/rack-a",
+        "communicator/rack-b"
+      ],
+      "minimum": 125,
+      "min_samples": 2,
+      "max_age_seconds": 3600,
+      "require_zero_errors": true
+    },
+    {
+      "id": "storage-read",
+      "owner": "storage-team",
+      "metric": "storage.sequential_read",
+      "unit": "GB/s",
+      "scopes": [
+        "node-a",
+        "node-b"
+      ],
+      "minimum": 10,
+      "min_samples": 3,
+      "max_age_seconds": 3600
+    }
+  ]
+}

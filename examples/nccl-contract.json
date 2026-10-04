@@ -1,0 +1,34 @@
+{
+  "version": "v1",
+  "name": "synthetic-communicator-handover",
+  "description": "SYNTHETIC NOT GPU VALIDATION. Invented values demonstrate decision behavior only.",
+  "environment_fingerprint": "synthetic-env-v1",
+  "criteria": [
+    {
+      "id": "nccl-out_of_place",
+      "owner": "fabric-team",
+      "metric": "nccl.all_reduce.busbw.out_of_place.bytes_1048576.type_float.op_sum",
+      "unit": "GB/s",
+      "scopes": [
+        "communicator/rack-a"
+      ],
+      "minimum": 125,
+      "min_samples": 2,
+      "max_age_seconds": 3600,
+      "require_zero_errors": true
+    },
+    {
+      "id": "nccl-in_place",
+      "owner": "fabric-team",
+      "metric": "nccl.all_reduce.busbw.in_place.bytes_1048576.type_float.op_sum",
+      "unit": "GB/s",
+      "scopes": [
+        "communicator/rack-a"
+      ],
+      "minimum": 125,
+      "min_samples": 2,
+      "max_age_seconds": 3600,
+      "require_zero_errors": true
+    }
+  ]
+}

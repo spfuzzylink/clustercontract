@@ -1,0 +1,40 @@
+{
+  "version": "v1",
+  "description": "SYNTHETIC NOT GPU VALIDATION. No hardware measurement occurred.",
+  "evidence": [
+    {
+      "id": "synthetic-node-a",
+      "recorded_at": "2026-10-04T11:45:00Z",
+      "environment_fingerprint": "synthetic-env-v1",
+      "scope": "node-a",
+      "metric": "storage.sequential_read",
+      "unit": "GB/s",
+      "samples": [
+        12,
+        11,
+        13
+      ],
+      "provenance": {
+        "source": "synthetic-fixture",
+        "reference": "examples/README.md"
+      }
+    },
+    {
+      "id": "synthetic-node-b",
+      "recorded_at": "2026-10-04T11:45:00Z",
+      "environment_fingerprint": "synthetic-env-v1",
+      "scope": "node-b",
+      "metric": "storage.sequential_read",
+      "unit": "GB/s",
+      "samples": [
+        12,
+        11,
+        13
+      ],
+      "provenance": {
+        "source": "synthetic-fixture",
+        "reference": "examples/README.md"
+      }
+    }
+  ]
+}

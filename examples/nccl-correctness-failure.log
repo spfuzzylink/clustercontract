@@ -1,0 +1,8 @@
+# SYNTHETIC NOT GPU VALIDATION. Values were invented, not measured.
+# out-of-place in-place
+# size count type redop root time algbw busbw #wrong time algbw busbw #wrong
+# (B) (elements) (us) (GB/s) (GB/s) (us) (GB/s) (GB/s)
+1048576 262144 float sum -1 12.5 80.00 140.00 1 13.2 75.00 131.00 0
+1048576 262144 float sum -1 12.7 79.00 138.25 0 13.4 74.00 129.50 0
+# Out of bounds values : 1 FAILED
+# Avg bus bandwidth : 134.69

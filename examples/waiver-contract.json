@@ -1,0 +1,30 @@
+{
+  "version": "v1",
+  "name": "synthetic-two-node-handover",
+  "description": "SYNTHETIC NOT GPU VALIDATION. Invented values demonstrate decision behavior only.",
+  "environment_fingerprint": "synthetic-env-v1",
+  "criteria": [
+    {
+      "id": "storage-read",
+      "owner": "storage-team",
+      "metric": "storage.sequential_read",
+      "unit": "GB/s",
+      "scopes": [
+        "node-a",
+        "node-b"
+      ],
+      "minimum": 10,
+      "min_samples": 3,
+      "max_age_seconds": 3600
+    }
+  ],
+  "waivers": [
+    {
+      "criterion_id": "storage-read",
+      "scope": "node-b",
+      "reason": "Synthetic demonstration: replacement node due before expiry.",
+      "owner": "customer-acceptance-owner",
+      "expires_at": "2026-10-05T12:00:00Z"
+    }
+  ]
+}
