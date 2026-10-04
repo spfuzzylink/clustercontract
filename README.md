@@ -1,12 +1,37 @@
 # ClusterContract
 
-**Customer acceptance contracts for AI compute infrastructure.**
+**Evidence-based customer handover for AI and high-performance computing (HPC) infrastructure.**
 
-A benchmark can finish successfully while a customer handover still lacks evidence for a required node, uses results from a previous configuration, or depends on an expired exception. ClusterContract records who owns each obligation, evaluates evidence for every required scope, and makes exceptions explicit in a reproducible acceptance report.
+## Why this exists
 
-**Pre-alpha. All included examples are SYNTHETIC NOT GPU VALIDATION.** No GPU, network, storage, or cluster performance has been measured by this project. The current release is a local Go library and CLI, with a normalized JSON input and a narrow NCCL text adapter. Its product hypothesis is that customer-owned, cross-tool obligations and expiring waivers can make handovers easier to review. Customer value and differentiation still require validation.
+Before a customer starts training models or running scientific simulations on a newly installed cluster, the delivery team needs to show that the agreed requirements have been tested. A successful benchmark alone does not answer whether every required server, communication group, and storage check is covered by current evidence.
 
-## Build and run
+For example, an infrastructure provider hands over two racks of GPU servers. Communication tests passed for the first rack, but the second rack and shared storage have not been measured. Calling the whole cluster ready would hide that gap. ClusterContract makes the unanswered requirements visible, with an owner for each, so the provider and customer can review the same acceptance report.
+
+It is intended for customer delivery engineers, cluster operators, and infrastructure buyers reviewing a handover or repeating acceptance checks after a configuration change. A temporary exception can have a named owner, a reason, and an expiry; it remains visible instead of silently becoming a pass.
+
+## What ClusterContract does
+
+ClusterContract is an experimental Go library and command-line tool in the **infrastructure acceptance testing and evidence review** category. A contract here means a machine-readable set of technical acceptance requirements, not a legal agreement. You supply those requirements and saved measurement results; the tool produces:
+
+- A result for every required test and explicitly named server or group, so a good average cannot hide missing coverage.
+- An explanation of failed thresholds, missing or stale evidence, and results from a different configuration.
+- The accountable owner, selected evidence source, and any expiring exception for each requirement.
+- An overall `pass`, `fail`, `incomplete`, or `conditional` result in a reproducible human-readable or JSON report.
+
+### Where it fits
+
+Benchmark and assessment tools collect measurements. ClusterContract evaluates supplied measurements against the customer's explicit acceptance requirements. Its current adapter reads a narrow format from tests for the NVIDIA Collective Communications Library (NCCL), which measure communication among GPUs; other measurements require the documented JSON evidence format. Live integrations with NVIDIA NVCRE, AICR, ReFrame, and DCGM are not implemented.
+
+The report supports a human acceptance review. Source labels and owners are supplied metadata, not authenticated identities, and a passing report is not an independent certification of cluster readiness.
+
+**Experimental alpha. All included examples are SYNTHETIC NOT GPU VALIDATION.** No GPU, network, storage, or cluster performance has been measured by this project. Customer usefulness and differentiation still require validation.
+
+## How to try it
+
+The workflow is: **agree on the requirements → collect measurements → evaluate the evidence → review gaps and exceptions**. Start with the included examples; no cluster access is needed.
+
+### Build and run
 
 Requires Go 1.25 or newer. Standard library only; no runtime service or GPU is required to evaluate saved evidence.
 
